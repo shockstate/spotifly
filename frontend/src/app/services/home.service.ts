@@ -15,7 +15,7 @@ export class HomeService {
     }
   };
 
-  private spotifyUrl = 'https://spotifly-manus.azurewebsites.net/api/getuserprofile?name=bleras';
+  private spotifyUrl = 'http://localhost:7071/api/CreatePlaylist';
   private data = null;
 
   constructor() { }
