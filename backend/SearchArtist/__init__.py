@@ -4,23 +4,40 @@ import azure.functions as func
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 import os
-
+import json
+from spotipy.oauth2 import SpotifyClientCredentials
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
-    scope = "user-library-read"
+    auth_manager = SpotifyClientCredentials()
+    sp = spotipy.Spotify(auth_manager=auth_manager)
 
-    sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope))
+    artist = req.params.get('artist')
 
-    search_term = 'Aitana'
+    if not artist:
+        try:
+            req_body = req.get_json()
+        except ValueError:
+            pass
+        else:
+            artist = req_body.get('artist')
+    
+    if artist is None:
+        return func.HttpResponse(
+            "Please pass an 'artist' parameter on the query string",
+            status_code=400
+        )
 
-    results = sp.search(q='artist:' + search_term, type='artist')
+    results = sp.search(q='artist:' + artist, type='artist')
     artists = results['artists']['items']
 
-    artist_names = [artist['name'] for artist in artists]
+    artist_list = []
+    for artist in artists:
+        artist_dict = {'id': artist['id'], 'name': artist['name']}
+        artist_list.append(artist_dict)
 
-    return func.HttpResponse(
-        "\n".join(artist_names),
-        status_code=200
-    )
+    if artist_list:
+        return func.HttpResponse(json.dumps({'artists': artist_list}), status_code=200)
+    else:
+        return func.HttpResponse(json.dumps({'error': 'No artists found'}), status_code=404)
