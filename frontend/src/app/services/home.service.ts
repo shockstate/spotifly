@@ -16,11 +16,12 @@ export class HomeService {
   };
 
   private spotifyUrl = 'http://localhost:7071/api/CreatePlaylist';
+  private apiSearchArtist = 'http://localhost:7071/api/SearchArtist';
   private data = null;
 
   constructor() { }
 
-  public async getDatos():Promise<String> {
+  public async makePlaylistRequest():Promise<String> {
     try {
       const response = await axios.get(this.spotifyUrl, this.config);
       return response.data;
@@ -29,6 +30,17 @@ export class HomeService {
       throw error;
     }
   }
+
+  public async getArtists(artist: string): Promise<any> {
+    try {
+      const response = await axios.get(`${this.apiSearchArtist}?artist=${artist}`, this.config);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+  
 
   
 }

@@ -6,17 +6,18 @@ import { HomeService } from '../../services/home.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent  {
 
-  datos: any;
+  public response: String = "";
 
   constructor(private homeService: HomeService) { }
 
-  async ngOnInit(): Promise<void> {
+  async createPlaylist(): Promise<void> {
     try {
-      this.datos = await this.homeService.getDatos();
+      this.response = await this.homeService.makePlaylistRequest();
     } catch (error) {
       console.error(error);
     }
   }
+  
 }

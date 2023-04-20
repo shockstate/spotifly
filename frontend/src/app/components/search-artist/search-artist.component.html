@@ -1,0 +1,22 @@
+<div class="card">
+  <input
+    [(ngModel)]="artistInput"
+    (input)="onInputChange()"
+    placeholder="Artist name"
+  />
+  <ul *ngIf="artists.length > 0" class="artists-suggestions">
+    <li *ngFor="let artist of artists" (click)="selectArtist(artist)">
+      {{ artist.name }}
+    </li>
+  </ul>
+
+  <div class="selected-artists-card mt-2">
+    <p>Selected Artists:</p>
+    <ul class="selected-artists">
+      <li *ngFor="let artist of selectedArtists">
+        {{ artist.name }}
+        <span class="remove-artist" (click)="removeArtist(artist)">x</span>
+      </li>
+    </ul>
+  </div>
+</div>
