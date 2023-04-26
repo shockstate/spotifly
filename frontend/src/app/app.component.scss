@@ -1,3 +1,5 @@
+@import '../styles.scss';
+
 p {
     color: #90AFC5;
     font-size: 36px;
@@ -9,4 +11,21 @@ button {
     color: #90AFC5;
     border-radius: 5%;
     font-family: monospace;
+}
+
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    background-color: $green;
+
+    padding: 0 20px;
+}
+
+.app-header p {
+    color: $dark-gray;
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
 }

@@ -1,5 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+
+
 body {
     font-family: monospace;
     background: #2A3132;
 }
+
+$green: #1DB954;
+$dark-gray: #282828;
+$light-gray: #B3B3B3;

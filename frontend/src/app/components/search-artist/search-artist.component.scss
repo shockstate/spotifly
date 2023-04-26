@@ -1,88 +1,107 @@
-.card {
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    display: inline-block;
-    margin-top: 16px;
-    width: 100%;
-    background: #3a2e2b;
-  }
-  
-  .card input {
-    height: 40px;
-    font-size: 20px;
-    border: none;
-    border-radius: 4px;
-    box-shadow: none;
-    display: inline-block;
-    margin: 0;
-    padding: 8px;
-    width: 100%;
-  }
-  
-  .card ul.artists-suggestions {
-    background-color: #fff;
-    border: none;
-    font-size: 20px;
-    border-radius: 0 0 4px 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    margin: 0;
-    padding: 0;
-    position: relative;
-    top: 8px;
-    width: 100%;
-    z-index: 1;
-  }
-  
-  .card ul.artists-suggestions li {
-    cursor: pointer;
-    padding: 8px;
-    transition: background-color 0.2s ease;
-  }
-  
-  .card ul.artists-suggestions li:hover {
-    background-color: #f9f9f9;
-  }
-  
-  .card ul.selected-artists {
-    border-radius: 4px;
-    color: #666;
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 16px;
-    padding: 8px;
-  }
-  
-  .card ul.selected-artists li {
-    background-color: #e0e0e0;
-    border-radius: 4px;
-    color: #666;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    margin-right: 8px;
-    padding: 4px 8px;
-    position: relative;
-  }
-  
-  .card ul.selected-artists li:hover {
-    background-color: #ccc;
-  }
-  
-  .card ul.selected-artists li span {
-    color: #f00;
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: bold;
-    margin-left: 8px;
-  }
-  
-  .card ul.selected-artists li span:hover {
-    color: #d00;
-  }
+@import '../../../styles.scss';
 
-  p {
-    font-size: 20px;
-    color: #90AFC5;
-  }
-  
+.card-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.card {
+  height: 150px;
+  box-shadow: 0 0 15px $green;
+  padding: 20px;
+  background: $dark-gray;
+  flex: 1;
+  margin-bottom: 16px;
+}
+
+.left-card {
+  margin-right: 50px;
+}
+
+.right-card {
+  height: 500px;
+  overflow-y: auto;
+  margin-left: auto;
+}
+.card input {
+  height: 40px;
+  background: $light-gray;
+  font-size: 20px;
+  border: none;
+  border-radius: 4px;
+  box-shadow: none;
+  display: inline-block;
+  margin: 0;
+  padding: 8px;
+  width: 50%;
+}
+
+.card ul.artists-suggestions {
+  background-color: $dark-gray;
+  border: none;
+  font-size: 20px;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+  top: 8px;
+  width: 100%;
+  z-index: 1;
+}
+
+.card ul.artists-suggestions li {
+  cursor: pointer;
+  padding: 8px;
+  margin: 10px 0;
+  color: $light-gray;
+  transition: background-color 0.2s ease;
+}
+
+.card ul.artists-suggestions li:hover {
+  background-color: $dark-gray;
+}
+
+.card ul.selected-artists {
+  max-height: 300px;
+  border-radius: 4px;
+  color: $light-gray;
+  margin-top: 16px;
+  padding: 8px;
+}
+
+.card ul.selected-artists li {
+  overflow-y: auto;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  color: #666;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+  padding: 4px 8px;
+  position: relative;
+}
+
+.card ul.selected-artists li:hover {
+  background-color: $light-gray;
+}
+
+.card ul.selected-artists li span {
+  color: #f00;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+.card ul.selected-artists li span:hover {
+  color: #d00;
+}
+
+p {
+  font-size: 20px;
+  color: $light-gray;
+}
