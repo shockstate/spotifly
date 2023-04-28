@@ -14,7 +14,7 @@ export class HomeComponent  {
 
   async createPlaylist(): Promise<void> {
     try {
-      this.response = await this.homeService.makePlaylistRequest();
+      this.response = await this.homeService.createPlaylistRequest();
     } catch (error) {
       console.error(error);
     }
