@@ -1,6 +1,13 @@
 import { Injectable } from '@angular/core';
 import axios, { AxiosRequestConfig, AxiosRequestHeaders } from 'axios';
 
+
+
+interface PlaylistRequest {
+  artists: Array<String>;
+  playlistName: String;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,9 +27,9 @@ export class HomeService {
 
   constructor() { }
 
-  public async createPlaylistRequest():Promise<String> {
+  public async createPlaylistRequest(playlistRequest:PlaylistRequest):Promise<String> {
     try {
-      const response = await axios.post(this.createPlaylistUrl, this.config);
+      const response = await axios.post(this.createPlaylistUrl, playlistRequest, this.config);
       return response.data;
     } catch (error) {
       console.error(error);
