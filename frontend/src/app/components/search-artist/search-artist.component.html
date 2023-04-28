@@ -24,4 +24,14 @@
       </ul>
     </div>
   </div>
+  <button (click)="openModal()">Create playlist</button>
+  <div *ngIf="showModal">
+    <div>
+      <label for="playlist-name">Playlist name:</label>
+      <input type="text" id="playlist-name" [(ngModel)]="playlistName">
+    </div>
+    <div>
+      <button (click)="sendPlaylist()">Send</button>
+    </div>
+  </div>
 </div>

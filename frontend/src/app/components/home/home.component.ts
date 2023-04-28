@@ -8,16 +8,9 @@ import { HomeService } from '../../services/home.service';
 })
 export class HomeComponent  {
 
-  public response: String = "";
 
-  constructor(private homeService: HomeService) { }
+  constructor() { }
 
-  async createPlaylist(): Promise<void> {
-    try {
-      this.response = await this.homeService.createPlaylistRequest();
-    } catch (error) {
-      console.error(error);
-    }
-  }
+
   
 }

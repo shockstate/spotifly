@@ -5,8 +5,13 @@ import { debounceTime, switchMap } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 interface Artist {
-  id: number;
-  name: string;
+  id: String;
+  name: String;
+}
+
+interface PlaylistRequest {
+  artists: Array<String>;
+  playlistName: String;
 }
 
 @Component({
@@ -18,6 +23,9 @@ export class SearchArtistComponent {
   public artistInput = '';
   public artists: Artist[] = [];
   public selectedArtists: Artist[] = [];
+  public response: String = "";
+  public showModal : Boolean = false;
+  public playlistName : String = '';
 
   private searchSubject = new Subject<string>();
   private subscription: Subscription = new Subscription();
@@ -50,10 +58,33 @@ export class SearchArtistComponent {
       this.artists = [];
     }
   }
-  
 
+  async sendPlaylist(): Promise<void> {
+    const artistIds = this.selectedArtists.map(artist => artist.id);
+
+    const playlistRequest: PlaylistRequest = {
+      artists: artistIds,
+      playlistName: this.playlistName
+    }
+
+    try {
+      this.response = await this.homeService.createPlaylistRequest(playlistRequest);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  
   selectArtist(artist: Artist) {
     this.selectedArtists.push(artist);
+  }
+
+  savePlaylist() {
+    this.showModal = false;
+    this.playlistName = '';
+  }
+
+  openModal() {
+    this.showModal = true;
   }
 
   removeArtist(artist: Artist) {
@@ -63,7 +94,6 @@ export class SearchArtistComponent {
     }
   }
   
-
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
