@@ -32,8 +32,8 @@ def getSongsIdsByArtists(artists: List[str]) -> List[str]:
     songs = []
     for _, item in enumerate(artists):
         top_songs = getTopSongsIdsByArtist(item)
-        songs.append(top_songs)
-    return top_songs
+        songs += top_songs
+    return songs
 
 def getTopSongsIdsByArtist(artist_id: str) -> List[str]:
     global spotipy_client

@@ -25,6 +25,6 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     artists = [Artist.from_dict(item) for item in results['artists']['items']]
 
     if artists:
-        return func.HttpResponse(json.dumps({'artists': artists}), status_code=200)
+        return func.HttpResponse(json.dumps({'artists': artists}, default=Artist.artist_serializer), status_code=200)
     else:
         return func.HttpResponse(json.dumps({'error': 'No artists found'}), status_code=404)
