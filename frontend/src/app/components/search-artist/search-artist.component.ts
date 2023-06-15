@@ -10,7 +10,7 @@ interface Artist {
 }
 
 interface PlaylistRequest {
-  artists: Array<String>;
+  artistsIds: Array<String>;
   playlistName: String;
 }
 
@@ -63,7 +63,7 @@ export class SearchArtistComponent {
     const artistIds = this.selectedArtists.map(artist => artist.id);
 
     const playlistRequest: PlaylistRequest = {
-      artists: artistIds,
+      artistsIds: artistIds,
       playlistName: this.playlistName
     }
 

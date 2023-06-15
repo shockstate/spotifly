@@ -13,4 +13,12 @@ class Artist:
         popularity = artist_dict['popularity']
         followers = artist_dict['followers']['total']
         genres = artist_dict['genres']
-        return cls(name, id, popularity, followers, genres)
+        return cls(id, name, popularity, followers, genres)
+    
+    def to_dict(self):
+        return {'name': self.name, 'id': self.id}
+    
+    def artist_serializer(obj):
+        if isinstance(obj, Artist):
+            return obj.to_dict()
+        raise TypeError(f'Object of type {type(obj)} is not JSON serializable')

@@ -4,7 +4,7 @@ import axios, { AxiosRequestConfig, AxiosRequestHeaders } from 'axios';
 
 
 interface PlaylistRequest {
-  artists: Array<String>;
+  artistsIds: Array<String>;
   playlistName: String;
 }
 
